@@ -49,8 +49,8 @@ img = Image.open("ICFOSS_logo.png")
 #st.image(img,width=300,caption='Streamlit Images')
 
 # Videos
-video_file = open("video.mp4",'rb')
-video_bytes = video_file.read()
+#video_file = open("video.mp4",'rb')
+#video_bytes = video_file.read()
 #st.video(video_bytes)
 
 # Videos From URL(Youtube)
@@ -59,8 +59,8 @@ yt_url ='https://www.youtube.com/watch?v=PyRDe6p1N7c'
 
 # # Audio
 #st.write("MP3 SONG")
-audio_file = open("demo.mp3",'rb')
-audio_bytes = audio_file.read()
+#audio_file = open("demo.mp3",'rb')
+#audio_bytes = audio_file.read()
 #st.audio(audio_bytes,format='audio/mp3')
 
 
@@ -73,7 +73,7 @@ audio_bytes = audio_file.read()
 #status = st.radio("What is your status",('Active','Inactive'))
 #if status == 'Active':
 #	st.text("Status is Active")
-else:
+#else:
 #	st.warning("Not Active Yet")
 
 # SelectBox
