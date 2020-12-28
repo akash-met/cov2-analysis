@@ -1,137 +1,75 @@
 import streamlit as st
 
-# Title
-#st.title("Streamlit demo ")
-# Header
-st.header("Icfoss")
-# Subheader
-#st.subheader("Language&Technology")
-
-# Text
-#st.text("Machine Learning Course")
-
-# Markdown
-#st.markdown("### Streamlit  ")
+import matplotlib.pyplot as plt 
+import pandas as pd
+import streamlit as st
+import numpy as np
+import matplotlib
+import seaborn as sns 
+#matplotlib.use('Agg')
+import seaborn as sns 
 
 
-# Adding A Link
-url_link = "https://icfoss.in/"
-#st.markdown(url_link)
-
-#st.markdown("[Google](https://google.com)")
+#Remove Warnings
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
+st.markdown("<h1 style='text-align: center; color: red;'>Performance of Cars</h1>", unsafe_allow_html=True)
+
+#st.title("Performance of Cars")
+#import dataset
+car = pd.read_csv('mtcars.csv')
+pd.set_option('display.max_rows', None)
+car
+st.write("Here is 31 models of car with it's specifications")
+
+#Display the table
+#st.table(car)
+#bar plot
+car1 = car.sort_values(by=['wt'])
+cy = sns.barplot(x=car1.model[0:20],y=car1.wt)
+cy.set_xticklabels(cy.get_xticklabels(),rotation=90)
+cy.set(xlabel="Model")
+cy.set_ylabel("Weight of car", rotation=90)
+cy.set_title('Weight of Cars', fontsize=20,)
+st.pyplot()
+
+#violin plot
+cylhp = sns.violinplot(x='cyl', y="hp", data=car, palette='Set1')
+cylhp.set(xlabel="Number of Cylinders")
+cylhp.set_ylabel("Horse power of vehicle", rotation=90)
+cylhp.set_title('Relationship between Number of Cylinders \n and Power of Vehicle', fontsize=15,)
+st.pyplot()
+st.write("From the figure above it is clear that the vehicles having higher number of cylinders can give more power")
 
 
-# Error text
-#st.success("Successful")
+#Displot
+qsecs = sns.distplot(car['qsec'])
+qsecs.set_xlabel("qsec(Time in seconds to travel 1/4 mile from standstill)")
+qsecs.set_title('Speed performance of Cars from Standstill', fontsize=15,)
+st.pyplot()
 
-#st.info("This is an info alert ")
-
-#st.warning("This is a warning ")
-
-#st.error("This shows an error ")
-
-#st.exception("NameError('name not defined')")
-
-# Getting Help Info From Python
-#st.help(range)
-
-# Writing Text/Super Fxn
-#st.write("Text with write")
-
-st.write("Python Range with write",range(10))
-
-## MEDIA
-# Images
-from PIL import Image 
-img = Image.open("ICFOSS_logo.png")
-#st.image(img,width=300,caption='Streamlit Images')
-
-# Videos
-#video_file = open("video.mp4",'rb')
-#video_bytes = video_file.read()
-#st.video(video_bytes)
-
-# Videos From URL(Youtube)
-yt_url ='https://www.youtube.com/watch?v=PyRDe6p1N7c'
-#st.video(yt_url)
-
-# # Audio
-#st.write("MP3 SONG")
-#audio_file = open("demo.mp3",'rb')
-#audio_bytes = audio_file.read()
-#st.audio(audio_bytes,format='audio/mp3')
+st.write("Most cars are taking 17 to 18 seconds to cover 1/4 miles from standstill")
 
 
-# Widget
-# Checkbox
-#if st.checkbox("Show/Hide"):
-#	st.text("Showing or Hiding Widget")
 
-# Radio Button
-#status = st.radio("What is your status",('Active','Inactive'))
-#if status == 'Active':
-#	st.text("Status is Active")
-#else:
-#	st.warning("Not Active Yet")
+#line plot
+st.header("Relationship between Hourse Power and Weight of Vehicle")
+sns.lineplot(x='wt', y='hp', data=car)
+st.pyplot()
 
-# SelectBox
-#occupation = st.selectbox("Your Occupation",['Data Scientist','Programmer','Doctor','Businessman'])
-#st.write("You selected this option",occupation)
-
-# MultiSelect
-#location = st.multiselect("Where do you stay",("London","New York","Accra","Kiev","Berlin","New Delhi"))
-#st.write("You selected",len(location),"location")
+#joinplot
+st.header("JointPlot of Weight and Horse power of vehicle")
+sns.jointplot(x='wt',y='hp',data=car,kind='scatter')
+st.pyplot()
 
 
-# Slider
-#salary = st.slider("What is your salary",1000,10000)
-
-# Buttons
-#st.button("Simple Button")
 
 
-# Text Input
-#name = st.text_input("Enter Name","Type Here...")
-#if st.button('Submit'):
- #   result = name.title()
- #   st.success(result)
-#else:
-#    st.write("Press the above button..")
+#Correation
+st.header("Heatmap showing the Correlation between different variables")
+sns.heatmap(car.corr(),cmap='coolwarm',annot=True)
+st.pyplot()
+st.write("Number of cylinders to Horse power and displacement show a correlation of 0.83and 0.9 respectively")
 
-# Text Area
-#c_text = st.text_area("Enter Text","Type Here...")
-#if st.button('Analyze'):
- #   c_result = c_text.title()
- #   st.success(c_result)
-#else:
-#    st.write("Press the above button..")
-
-
-# Number Input
-#number = st.number_input('Enter Number')
-#st.write("The Number was",number)
-
-# With Limits
-#level = st.number_input('Enter Level',5,10)
-#st.write("You are in level",level)
-
-
-#  Date Input
-#import datetime,time
-#today = st.date_input("Today is",datetime.datetime.now())
-
-
-# Time Input
-#t = st.time_input("The time now is",datetime.time(10,00))
-#st.write("The time will be",t)
-
-# SIDE Bar
-#st.sidebar.header("Side Bar Header")
-#st.sidebar.text("Hello")
-
-
-# Balloons
-#st.balloons()
 

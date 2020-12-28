@@ -1,2 +1,5 @@
+numpy==1.19.4
+seaborn==0.11.1
+pandas==1.2.0
 streamlit==0.73.1
-Pillow==8.0.1
+matplotlib==3.3.3
